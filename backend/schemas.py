@@ -1,0 +1,39 @@
+
+from pydantic import BaseModel, EmailStr, Field
+
+
+# URL shortening
+class URLRequest(BaseModel):
+    original_url: str
+
+
+class URLResponse(BaseModel):
+    original_url: str
+    short_code: str
+    short_url: str
+
+
+# User registration
+class UserRegister(BaseModel):
+    name: str = Field(min_length=2, max_length=100)
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=128)
+
+
+# User login
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+
+# User information returned by API
+class UserResponse(BaseModel):
+    id: int
+    name: str
+    email: EmailStr
+
+
+# JWT response
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"

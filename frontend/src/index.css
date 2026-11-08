@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink font-sans text-blush antialiased;
+    min-height: 100vh;
+  }
+  ::selection {
+    background: #ed9e59;
+    color: #1b1931;
+  }
+  :focus-visible {
+    outline: 2px solid #ed9e59;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Page backdrop built from the palette */
+  .app-bg {
+    background:
+      radial-gradient(900px 480px at 85% -10%, rgba(237, 158, 89, 0.22), transparent 60%),
+      radial-gradient(700px 520px at -10% 20%, rgba(102, 34, 73, 0.55), transparent 60%),
+      radial-gradient(900px 600px at 50% 120%, rgba(68, 23, 78, 0.8), transparent 60%),
+      #1b1931;
+  }
+
+  .card {
+    @apply rounded-2xl border border-white/10 bg-white/[0.045] shadow-card backdrop-blur-sm;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-white/10 bg-ink/60 px-3.5 py-2.5 text-sm text-white placeholder:text-blush/40 transition;
+    @apply focus:border-amber/70 focus:outline-none focus:ring-2 focus:ring-amber/20;
+  }
+
+  /* Soft vignette that keeps hero text legible over the flow field */
+  .landing-veil {
+    background:
+      radial-gradient(ellipse 62% 40% at 50% 46%, rgba(27, 25, 49, 0.82), rgba(27, 25, 49, 0.35) 55%, transparent 78%),
+      radial-gradient(ellipse 90% 55% at 50% 100%, rgba(102, 34, 73, 0.28), transparent 70%),
+      linear-gradient(to bottom, rgba(27, 25, 49, 0) 55%, rgba(27, 25, 49, 0.6) 100%);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-amber via-[#e58a6f] to-blush bg-clip-text text-transparent;
+  }
+}
+
+/* Recharts tweaks */
+.recharts-cartesian-axis-tick-value {
+  fill: rgba(233, 200, 200, 0.6);
+  font-size: 12px;
+}
