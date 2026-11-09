@@ -37,6 +37,10 @@ app = FastAPI(
     description="URL Shortener with Click Analytics and Rate Limiting",
     version="1.0.0"
 )
+@app.get("/healthz")
+def health_check():
+    return {"status": "ok"}
+
 limiter = Limiter(key_func=get_remote_address)
 
 app.state.limiter = limiter
